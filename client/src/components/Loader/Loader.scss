@@ -1,0 +1,59 @@
+.loader__title {
+  color: rgba(175, 175, 175, 0.3);
+  text-transform: capitalize;
+  font-size: 60px;
+  text-align: center;
+  word-wrap: break-word;
+  padding: 80px 20%;
+
+  @media #{$Tablet} {
+    padding: 75px 20%;
+    font-size: 80px;
+  }
+
+  @media #{$Desktop} {
+    font-size: 120px;
+  }
+}
+
+.loader__title-sub {
+  color: rgba(175, 175, 175, 0.8);
+  line-height: 1.5;
+  font-size: 35px;
+  text-align: center;
+  word-wrap: break-word;
+  padding: 80px 20%;
+  font-weight: 400;
+
+  @media #{$Tablet} {
+    padding: 75px 20%;
+    font-size: 50px;
+  }
+
+  @media #{$Desktop} {
+    font-size: 60px;
+  }
+}
+
+.loader__cta {
+  font-weight: 600;
+  color: rgb(32, 32, 32);
+  text-transform: capitalize;
+  position: absolute;
+  font-size: 25px;
+  bottom: 54px;
+  right: 125px;
+  animation: slideUpText 1s;
+}
+
+@keyframes slideUpText {
+  0% {
+    position: fixed;
+    bottom: -100%;
+  }
+
+  100% {
+    position: fixed;
+    bottom: 51px;
+  }
+}

@@ -1,0 +1,127 @@
+.main-wrapper {
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+  color: rgba(32, 32, 32, 1);
+}
+.report {
+  color: rgba(32, 32, 32, 1);
+  
+  &__table {
+    display: flex;
+  }
+
+  &__filler {
+    margin-top: 8px;
+    font-size: 18px;
+  }
+
+  &__subheading {
+    text-decoration: underline;
+  }
+
+  &__section-heading {
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+  &__ul-bold {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &__regular-font {
+    font-weight: normal;
+    font-size: 18px;
+  }
+
+  &__label {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  &__label,
+  &__label-info {
+    font-size: 18px;
+  }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  &__image-wrapper {
+    margin-right: 20px;
+    @media #{$Tablet} {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__image {
+    max-height: 250px;
+    width: auto;
+    max-width: 100%;
+    margin: 5% auto;
+    border: 1px solid rgba(32, 32, 32, 1);
+    border-radius: 10px;
+
+    @media #{$Tablet} {
+      flex: 1;
+      margin-right: 25px;
+      width: 350px;
+      max-height: 100%;
+    }
+  }
+
+  &__sigature {
+    font-size: 20px;
+  }
+
+  &__link {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    color: rgba(32, 32, 32, 1);
+
+    &--float-left {
+      margin-top: 10px;
+      float: left;
+
+      &-margin {
+        margin-left: 40px;
+      }
+    }
+  }
+}
+
+.signature {
+  color: rgba(32, 32, 32, 1);
+
+  &-title {
+    margin-bottom: 20px;
+  }
+  &-built-by {
+    margin-bottom: 20px;
+  }
+  &-text {
+    margin-bottom: 5px;
+  }
+  &-linkedin {
+    background: #0077b5;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    &:hover {
+      background: #283e4a;
+    }
+  }
+  &-github {
+    border: 1px solid #24292e;
+    background: #fff;
+    color: #24292e;
+    padding: 5px 20px;
+    border-radius: 20px;
+    &:hover {
+      background: #bdbfc0;
+    }
+  }
+}

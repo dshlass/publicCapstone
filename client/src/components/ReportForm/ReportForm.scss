@@ -1,0 +1,219 @@
+.input {
+  display: flex;
+
+  &__text {
+    background: white;
+    border: 1px solid rgba(32, 32, 32, 1);
+    font-size: 20px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    width: 95%;
+    border-radius: 20px;
+    animation: slideinTextField 0.5s;
+    resize: none;
+
+    &:focus {
+      outline: none;
+      background: #fafafa;
+      border: 1px solid #f7b018;
+      box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.5);
+    }
+
+    &--title {
+      font-weight: bold;
+    }
+
+    &--project-info {
+      background: white;
+      border: 1px solid rgba(32, 32, 32, 1);
+      padding: 5px 10px;
+      margin-top: 5px;
+      width: 100%;
+      font-size: 20px;
+
+      border-radius: 20px;
+      animation: slideinTextField 0.5s;
+
+      &:focus {
+        outline: none;
+        background: #fafafa;
+        border: 1px solid #f7b018;
+        box-shadow: inset 0 2px 4px 0 hsla(0, 0%, 0%, 0.5);
+      }
+    }
+    &-photo {
+      background: white;
+      margin-top: 5px;
+      width: 95%;
+      animation: slideinTextField 0.5s;
+
+      &:focus {
+        background: #fafafa;
+        border: 1px solid grey;
+      }
+    }
+  }
+
+
+  &__section-spacing {
+    margin-bottom: 20px;
+  }
+
+  &__input-field {
+    width: 95%;
+  }
+
+  &__photo-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(32, 32, 32, 1);
+    border-radius: 20px;
+    overflow: hidden;
+    list-style-type: none;
+
+    @media #{$Tablet} {
+      width: 50%;
+    }
+
+    @media #{$Desktop} {
+      width: 30%;
+    }
+  }
+
+  &__button-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+
+    &--completed {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+  }
+
+  &__add {
+    width: 29px;
+    margin-right: 5px;
+    transition: all 1.25s;
+  }
+
+  &__add:hover {
+    transition: all 1.25s;
+    transform: rotate(360deg);
+  }
+
+  &__remove {
+    width: 29px;
+    transition: all 0.5s;
+  }
+
+  &__remove:hover {
+    transition: all 0.5s;
+    transform: rotate(90deg);
+  }
+
+  &__button {
+    background: none;
+    width: 45px;
+  }
+
+  &__button-field {
+    background: none;
+    margin-top: 5px;
+    width: 45px;
+    position: absolute;
+    left: 94%;
+    animation: slideinButton 0.5s;
+    bottom: 2px;
+  }
+
+  &__section {
+    margin-bottom: 20px;
+  }
+
+  &__field-wrapper {
+    display: flex;
+    position: relative;
+  }
+
+  &__field-wrapper--form {
+    list-style: none;
+    position: relative;
+  }
+
+  &__submit-wrapper {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+
+    @media #{$Tablet} {
+      max-width: 800px;
+    }
+  }
+
+  &__submit {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    align-self: center;
+    padding: 5px 10px;
+    min-width: 200px;
+    height: 60px;
+    border-radius: 20px;
+    background: $yellow;
+    color: $grey;
+
+    &:hover {
+      color: white;
+      background: $grey-hover;
+      transition: all 0.25s;
+    }
+
+    @media #{$Tablet} {
+      margin-left: 100px;
+    }
+  }
+
+  &__clear {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    align-self: center;
+    padding: 5px 10px;
+    width: 200px;
+    height: 60px;
+
+    border-radius: 20px;
+    border: 1px solid rgba(32, 32, 32, 1);
+    color: $grey;
+    background: #fafafa;
+
+    &:hover {
+      color: white;
+      background: $grey-hover;
+      transition: all 0.25s;
+    }
+  }
+}
+
+@keyframes slideinTextField {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 95%;
+  }
+}
+@keyframes slideinButton {
+  from {
+    left: 0%;
+    opacity: 0;
+  }
+
+  to {
+    left: 94%;
+    opacity: 1;
+  }
+}

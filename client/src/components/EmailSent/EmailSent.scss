@@ -1,0 +1,101 @@
+.modal {
+  
+  &__reference {
+    position: relative;
+  }
+  
+  
+  &__hidden {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: rgba(0,0,0,0.5);
+    left: 0;
+    right: 0;
+    top: -500px;
+    transition: all 0.5s;
+  }
+
+  &__show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 500;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    transition: all 0.5s;
+    opacity: 1;
+  }
+
+  &__inner {
+    border-radius: 20px;
+    background: $greyButton;
+    width: 80%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @media #{$Tablet} {
+      width: 60%;
+    }
+    @media #{$Desktop} {
+      width: 30%;
+    }
+  }
+
+  &__image {
+    width: 30%;
+    margin-bottom: 60px;
+  }
+
+  &_text-container {
+
+  }
+
+  &__text {
+    color: white;
+    font-size: 18px;
+  }
+
+&__submit {
+  font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 60px;
+    align-self: center;
+    padding: 5px 10px;
+    width: 200px;
+    height: 60px;
+    border-radius: 20px;
+    background: $yellow;
+    color: $grey;
+    
+    &:hover {
+      color: white;
+      background: $grey-hover;
+      transition: all 0.25s;
+    }
+  }
+
+}
+
+@keyframes slideInEmail {
+0% {
+  position: relative;
+  left: -100px;
+}
+
+100% {
+  position: relative;
+  left: 0;
+}
+}
+
+
+

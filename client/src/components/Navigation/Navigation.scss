@@ -1,0 +1,58 @@
+.navigation {
+  background: $grey;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid $yellow;
+  position: relative;
+  padding: 0 5%;
+
+  &__flex {
+    text-align: center;
+    margin-left: auto;
+    margin-right: 5%;
+  }
+
+  &__back {
+    background: transparent;
+    margin-left: 2rem;
+  }
+
+  &__back-icon {
+    width: 25px;
+  }
+
+  &__menu {
+    background: transparent;
+    cursor: pointer;
+     &:visited {
+       color: rgba(32, 32, 32, 1);  
+;
+     }
+  }
+
+  &__title {
+    font-size: 35px;
+    margin-left: 1rem;
+    color: white;
+  }
+
+  &__toggle {
+    position: absolute;
+    right: 50px;
+    top: 15px;
+    padding: 5px 10px;
+    width: 150px;
+    border-radius: 20px;
+    background: $yellow;
+    color: $grey;
+    transition: all 0.25s;
+    line-height: 1.35;
+
+    &:hover {
+      color: white;
+      background: $grey-hover;
+      transition: all 0.25s;
+    }
+  }
+}
