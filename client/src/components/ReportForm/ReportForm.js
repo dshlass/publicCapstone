@@ -81,14 +81,15 @@ class FieldArraysForm extends React.Component {
           <FieldArray name="picture" component={SectionPhotos} />
         </div>
 
-         <section className="report__signature">
+        {/* Change this section for a custom signature */}
+        <section className="report__signature">
           <p className="report__label-info signature-title">Should you have any questions, please contact the undersigned.</p>
           <p className="report__label-info signature-built-by">Site Assistant Built By:</p>
           <p className="report__label-info signature-text">Dale Shlass, EIT</p>
-          <p className="report__label-info signature-text">Web Developer</p> 
-          <p className='report__link signature-text' href='tel:+14169187713'>416-918-7713</p> 
+          <p className="report__label-info signature-text">Web Developer</p>
+          <p className='report__link signature-text' href='tel:+14169187713'>416-918-7713</p>
           <p className='report__link signature-text' href='mailto:dale@shlass.com'>dale@shlass.com</p>
-          </section>
+        </section>
 
         <div className='input__submit-wrapper'>
           <button
