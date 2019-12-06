@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 // Setting up mongoDB connection information
-mongoose.connect(db, {useNewUrlParser: true});
+mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 
 // //established connection to MongoDB database
@@ -29,7 +29,7 @@ connection.once('open', () => {
 //setting up Main route
 app.use('/', siteVisitRoutes);
 
-app.get('*', (req,res) => {
+app.get('*', (req, res) => {
   res.sendfile(path.join(__dirname, '/client/build/index.html'))
 })
 

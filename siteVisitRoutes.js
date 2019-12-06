@@ -8,6 +8,8 @@ const fs = require("fs");
 var multer = require("multer");
 const nodemailer = require("nodemailer");
 
+require('dotenv').config()
+
 router.post("/api/", (req, res, next) => {
   const data = req.body;
   if (data.username === "User" && data.password === "password") {
@@ -23,10 +25,10 @@ router.post("/api/", (req, res, next) => {
 
 //Creates filepath and location
 var storage = multer.diskStorage({
-  destination: function(req, file, cb) {
+  destination: function (req, file, cb) {
     cb(null, "public");
   },
-  filename: function(req, file, cb) {
+  filename: function (req, file, cb) {
     cb(null, Date.now() + "-" + file.originalname);
   }
 });
@@ -39,12 +41,12 @@ let globalPhoto = [];
 /**
  * Photos are uploaded throught this endpoint
  */
-router.post("/api/photoupload", function(req, res) {
-  
-  upload(req, res, function(err, data) {
+router.post("/api/photoupload", function (req, res) {
+
+  upload(req, res, function (err, data) {
     let encodeArray = [];
     let photoIdArray = [];
-    
+
     //Each image is converted to base 64 and then into a buffer
     for (let file of req.files) {
       //start of loop through photo files
@@ -55,7 +57,7 @@ router.post("/api/photoupload", function(req, res) {
         contentType: file.mimetype,
         image: Buffer.from(encode_image, "base64")
       };
-    
+
       const photo = new Photos({
         _id: new mongoose.Types.ObjectId(),
         ...finalImg
@@ -187,7 +189,7 @@ router.post("/api/:year/:projectId", (req, res, next) => {
       project[0].save().then(project => {
         console.log("Project Saved");
 
-        setTimeout(function() {
+        setTimeout(function () {
           mainExport(report, project);
         }, 5000);
       });
@@ -204,7 +206,7 @@ router.post("/api/:year/:projectId", (req, res, next) => {
 router.get("/api/:year/:projectId", (req, res, next) => {
   Project.findOne({ projectNumber: req.params.projectId })
     .populate("reports")
-    .exec(function(err, project) {
+    .exec(function (err, project) {
       if (err) return err;
       // console.log(project)
       let returnReports = [];
@@ -251,7 +253,7 @@ router.get("/api/:year/:projectId/:reportId", (req, res, next) => {
 
   Project.findOne({ projectNumber: req.params.projectId })
     .populate("reports")
-    .exec(function(err, report) {
+    .exec(function (err, report) {
       if (err) return err;
 
       let specificReport = report.reports.find(
@@ -262,7 +264,7 @@ router.get("/api/:year/:projectId/:reportId", (req, res, next) => {
 
       Report.find({ _id: returnReportId })
         .populate("photos")
-        .exec(function(err, report) {
+        .exec(function (err, report) {
           projectSummary[0].reports = report;
 
           let photoSection = projectSummary[0].reports[0].photos;
@@ -294,8 +296,8 @@ router.get("/api/:year/:projectId/:reportId", (req, res, next) => {
 async function mainExport(report, project) {
   await Report.find({ _id: report._id })
     .populate("photos")
-    .exec(function(err, report) {
-      
+    .exec(function (err, report) {
+
       //creating the outputs for the various arrays inside the report
       let purpose = report[0].purposeOfReview
         .map(note => `<li style="font-size:18px; margin-top:5px;">${note}</li>`)
@@ -319,7 +321,7 @@ async function mainExport(report, project) {
         .map(
           section =>
             `<li><h3 style='margin-bottom:5px;font-size:20px; text-transform: capitalize;'>${
-              section.title
+            section.title
             }</h3><ul style='margin-top: 0; padding-left: 20px;'>${section.notes
               .map(
                 note =>
@@ -364,7 +366,7 @@ async function mainExport(report, project) {
                     <tr>
                       <td style='font-weight: 600;font-size:18px; text-align: right;'>Contractors:</td>
                       <td style='font-size:18px;'>${contractors.join(", ") ||
-                        "Dale Shlass"}</td>
+        "Dale Shlass"}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -373,7 +375,7 @@ async function mainExport(report, project) {
                   <h2 style='font-size:22px; margin-bottom: 0; text-decoration: underline'>Purpose of Review</h2>
                   <ul style='margin-top: 0; padding-left: 20px;'>
                     ${purpose ||
-                      '<li style="font-size:18px; margin-top:5px;">None noted.</li>'}
+        '<li style="font-size:18px; margin-top:5px;">None noted.</li>'}
                   </ul>
                 </section>
 
@@ -381,7 +383,7 @@ async function mainExport(report, project) {
                   <h2 style='font-size:22px; margin-bottom: 0; text-decoration: underline'>Deficiencies Noted</h2>
                   <ul style='margin-top: 0; padding-left: 20px;'>
                     ${deficiencies ||
-                      '<li style="font-size:18px; margin-top: 5px;">None noted.</li>'}
+        '<li style="font-size:18px; margin-top: 5px;">None noted.</li>'}
                   </ul>
                 </section>
 
@@ -390,17 +392,17 @@ async function mainExport(report, project) {
                     Work Underway/Completed
                   </h2>
                     ${
-                      workCompleted
-                        ? `<ol style='font-weight: 600; font-size: 20px;'>${workCompleted}<ol>`
-                        : '<ul style="margin-top: 0; padding-left: 20px;"><li style="font-size:18px; margin-top: 5px;">No work in progress at the time of site visit.</li></ul>'
-                    }
+        workCompleted
+          ? `<ol style='font-weight: 600; font-size: 20px;'>${workCompleted}<ol>`
+          : '<ul style="margin-top: 0; padding-left: 20px;"><li style="font-size:18px; margin-top: 5px;">No work in progress at the time of site visit.</li></ul>'
+        }
                 </section>
 
                 <section>
                   <h2 style=' font-size:22px; margin-bottom: 0; text-decoration: underline'>Miscellaneous Notes</h2>
                   <ul style='margin-top: 0; padding-left: 20px;'>
                     ${miscNotes ||
-                      '<li style="font-size:18px; margin-top: 5px;">None noted.</li>'}
+        '<li style="font-size:18px; margin-top: 5px;">None noted.</li>'}
                   </ul>
                 </section>
               </div>
@@ -412,8 +414,8 @@ async function mainExport(report, project) {
                 <p style="font-size: 18px; margin-bottom: 20px;">Should you have any questions, please contact the undersigned.</p>
                 <p style="font-size: 18px; margin-bottom: 20px;">Site Assistant Built By:</p>
                 <p style="font-size: 18px; margin-bottom: 5px;">Dale Shlass, EIT</p>
-                <p style="font-size: 18px; margin-bottom: 5px;margin-top: 0px;">Web Developer</p> 
-                <a style="display: block;font-size: 18px;text-decoration: none;color: rgba(32, 32, 32, 1); " href='tel:+14169187713'>416-918-7713</a> 
+                <p style="font-size: 18px; margin-bottom: 5px;margin-top: 0px;">Web Developer</p>
+                <a style="display: block;font-size: 18px;text-decoration: none;color: rgba(32, 32, 32, 1); " href='tel:+14169187713'>416-918-7713</a>
                 <a style="display: block;font-size: 18px;text-decoration: none;color: rgba(32, 32, 32, 1); margin-bottom: 5px;" href='mailto:dale@shlass.com'>dale@shlass.com</a>
                 <a style="display: block;font-size: 18px;text-decoration: none; margin-top: 10px;float: left; background: #0077B5;color: white;padding: 5px 20px;border-radius: 20px;" href='https://www.linkedin.com/in/dshlass/'>LinkedIn</a>
                 <a style="display: block;font-size: 18px;text-decoration: none; margin-top: 10px;float: left; border: 1px solid #24292E; background: #fff; color: #24292E; padding: 5px 20px; border-radius: 20px; margin-left: 40px;" href='https://www.github.com/dshlass/'>GitHub</a>
@@ -443,11 +445,11 @@ async function mainExport(report, project) {
       console.log(transporter);
 
       let info = transporter.sendMail({
-        from: '"Site Assistant ✅" <dale@shlass.com>', // sender address
+        from: `"Site Assistant ✅" <${process.env.NODEMAIL_USER}>`, // sender address
         to: `${project.recipients}`, // list of receivers
         subject: `${project.projectName} Site Visit ${["#"].toString()}${
           report[0].reportNumber
-        }`, // Subject line
+          }`, // Subject line
         text: "Your site report", // plain text body
         html: emailBody,
         attachments: photoSection
