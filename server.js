@@ -3,6 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose');
 const siteVisitRoutes = require('./siteVisitRoutes')
 const path = require('path')
+require('dotenv').config()
 
 
 //initializing the app
