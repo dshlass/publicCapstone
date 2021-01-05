@@ -4,7 +4,7 @@
   "description": "Site visit application for the engineering and construction industry",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "eslint": "^6.1.0",
     "eslint-plugin-react": "^7.14.3",
     "node-sass": "^4.12.0",
